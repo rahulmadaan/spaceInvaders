@@ -1,0 +1,28 @@
+<html>
+
+<head>
+    <title>
+        SpaceShip Shooter
+    </title>
+</head>
+<script src="script.js"></script>
+<link rel="stylesheet" type="text/css" href="style.css">
+
+<body id="body" onkeydown="
+    if(event.key == 'ArrowLeft') {moveLeft()}
+    if(event.key == 'ArrowRight') {moveRight()}
+    if(event.key == 'ArrowUp') {moveUp()}
+    if(event.key == 'ArrowDown') {moveBottom()}
+    if(event.key == ' ') {fireBullet()}
+    " onload="moveEnemy()">
+    <div id="spaceship">
+        <img src="http://www.myiconfinder.com/uploads/iconsets/256-256-7647188dd0df401f7ec5c5358a0af9a1-rocket.png" alt=""
+            style="background-size: cover; width: 100px; height: 100px;">
+    </div>
+    <div class="bullet"> </div>
+    <div class="alien">
+        <img src="https://i.ibb.co/2ZHXCm4/download.png" alt="alien"/>
+    </div>
+</body>
+
+</html>
