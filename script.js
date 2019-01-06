@@ -1,6 +1,6 @@
 const currentPosition = {
     left: 700,
-    bottom: 50,
+    bottom: 0,
 };
 const currentAlienPosition = {
     left: 700,
@@ -45,7 +45,7 @@ const upBounds = function (currentPosition) {
     return 200 > currentPosition;
 }
 const bottomBounds = function (currentPosition) {
-    return currentPosition > 70;
+    return currentPosition > 0;
 };
 //--------------------------------------------------
 const makeBullet = function () {
@@ -95,7 +95,7 @@ const makeShot = function () {
     let { left, bottom } = currentAlienPosition;
     bottom = 500;
     let div = document.createElement('div');
-    div.style.left = left + 80 + 'px';
+    div.style.left = left + 80 + 'px'; // to put shot at center of spaceship
     div.style.bottom = bottom;
     div.className = 'alienAttack';
     document.body.appendChild(div);
@@ -112,3 +112,4 @@ const fireShot = function () {
         }
     }, 400);
 };
+

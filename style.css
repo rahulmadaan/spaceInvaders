@@ -1,7 +1,7 @@
 #spaceship{
     position: absolute; 
     left: 700; 
-    bottom: 50; 
+    bottom: 0; 
     width:100px; 
     height:100px;
 }
