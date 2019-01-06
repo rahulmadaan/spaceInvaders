@@ -19,3 +19,12 @@
     width:100px; 
     height:100px;
 }
+.alienAttack{
+    position: absolute; 
+    left: 780; 
+    bottom: 500; 
+    width:10px; 
+    height:40px;
+    border:2px solid black;
+    background-color: red;
+}

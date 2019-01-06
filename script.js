@@ -6,11 +6,11 @@ const currentAlienPosition = {
     left: 700,
     bottom: 610
 };
+//----------------------------------------------------
 const moveRight = function () {
     if (rightBounds(currentPosition.left)) {
         currentPosition.left = currentPosition.left + 30;
         document.getElementById('spaceship').style.left = currentPosition.left + 'px';
-
     }
 };
 
@@ -26,7 +26,6 @@ const moveUp = function () {
         currentPosition.bottom = currentPosition.bottom + 30;
         document.getElementById('spaceship').style.bottom = currentPosition.bottom + 'px';
     }
-
 };
 
 const moveBottom = function () {
@@ -48,6 +47,7 @@ const upBounds = function (currentPosition) {
 const bottomBounds = function (currentPosition) {
     return currentPosition > 70;
 };
+//--------------------------------------------------
 const makeBullet = function () {
     let { left, bottom } = currentPosition;
     bottom = bottom + 120;      // to place bullet at the tip of spaceship
@@ -66,7 +66,7 @@ const fireBullet = function () {
         div.style.bottom = bottom + 'px';
     }, 400);
 };
-
+//-------------------------------------------
 const moveAlienRight = function () {
     let move = setInterval(() => {
         currentAlienPosition.left = currentAlienPosition.left + 50; // for moving right
@@ -89,5 +89,30 @@ const moveAlienLeft = function () {
     }, 300);
 }
 const moveAlien = function () {
+    
     moveAlienLeft(currentAlienPosition.left);
+};
+//---------------------------------------
+// const alienShot = function() {
+//     let left = currentAlienPosition.left;
+//     left = left + 80;
+//     document.getElementById('alienAttack').style.left = left;
+// }
+const makeShot = function () {
+    let { left, bottom } = currentAlienPosition;
+    bottom = 500;      
+    let div = document.createElement('div');
+    div.style.left = left + 80 + 'px';
+    div.style.bottom = bottom;
+    div.className = 'alienAttack';
+    document.body.appendChild(div);
+
+    return { div, bottom };
+}
+const fireShot = function () {
+    let { div, bottom } = makeShot();
+    setInterval(() => {
+        bottom = bottom - 70;
+        div.style.bottom = bottom + 'px';
+    }, 400);
 };
