@@ -89,18 +89,11 @@ const moveAlienLeft = function () {
     }, 300);
 }
 const moveAlien = function () {
-    
     moveAlienLeft(currentAlienPosition.left);
 };
-//---------------------------------------
-// const alienShot = function() {
-//     let left = currentAlienPosition.left;
-//     left = left + 80;
-//     document.getElementById('alienAttack').style.left = left;
-// }
 const makeShot = function () {
     let { left, bottom } = currentAlienPosition;
-    bottom = 500;      
+    bottom = 500;
     let div = document.createElement('div');
     div.style.left = left + 80 + 'px';
     div.style.bottom = bottom;
@@ -111,8 +104,11 @@ const makeShot = function () {
 }
 const fireShot = function () {
     let { div, bottom } = makeShot();
-    setInterval(() => {
+    let shot = setInterval(() => {
         bottom = bottom - 70;
         div.style.bottom = bottom + 'px';
+        if (bottom <= 0) {
+            document.body.removeChild(div);
+        }
     }, 400);
 };
