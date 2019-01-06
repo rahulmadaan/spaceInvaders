@@ -12,7 +12,7 @@
     position: absolute; 
     background-color: blueviolet;
 }
-.alien{
+#alien{
     position: absolute; 
     left: 700; 
     bottom: 610; 

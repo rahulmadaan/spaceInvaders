@@ -2,11 +2,15 @@ const currentPosition = {
     left: 700,
     bottom: 50,
 };
-
+const currentAlienPosition = {
+    left: 700,
+    bottom: 610
+};
 const moveRight = function () {
     if (rightBounds(currentPosition.left)) {
         currentPosition.left = currentPosition.left + 30;
         document.getElementById('spaceship').style.left = currentPosition.left + 'px';
+
     }
 };
 
@@ -61,5 +65,29 @@ const fireBullet = function () {
         bottom = bottom + 70;
         div.style.bottom = bottom + 'px';
     }, 400);
+};
 
+const moveAlienRight = function () {
+    let move = setInterval(() => {
+        currentAlienPosition.left = currentAlienPosition.left + 50; // for moving right
+        document.getElementById('alien').style.left = currentAlienPosition.left;
+        if (currentAlienPosition.left > 1200) {
+            clearInterval(move);
+            moveAlienLeft(currentAlienPosition.left);
+        }
+    }, 300);
+};
+
+const moveAlienLeft = function () {
+    let move = setInterval(() => {
+        currentAlienPosition.left = currentAlienPosition.left - 50; // for moving left
+        document.getElementById('alien').style.left = currentAlienPosition.left;
+        if (currentAlienPosition.left < 100) {
+            clearInterval(move);
+            moveAlienRight(currentAlienPosition.left);
+        }
+    }, 300);
+}
+const moveAlien = function () {
+    moveAlienLeft(currentAlienPosition.left);
 };
