@@ -92,8 +92,8 @@ const moveAlien = function () {
     moveAlienLeft(currentAlienPosition.left);
 };
 const inRange = function (left, bottom, currentPosition) {
-    const leftCheck = left >= currentPosition.left - 40 && left <= currentPosition.left + 40;
-    const bottomCheck = bottom >= currentPosition.bottom - 50 && bottom <= currentPosition.bottom + 50;
+    const leftCheck = left >= currentPosition.left - 80 && left <= currentPosition.left - 20;
+    const bottomCheck = bottom >= currentPosition.bottom - 60 && bottom <= currentPosition.bottom + 30;
     if (leftCheck && bottomCheck) {
         return true;
     }
@@ -137,6 +137,5 @@ const fireContinousShot = function () {
         fireShot();
         fireContinousShot();
     }, interval);
-
 };
 
