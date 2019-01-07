@@ -91,6 +91,13 @@ const moveAlienLeft = function () {
 const moveAlien = function () {
     moveAlienLeft(currentAlienPosition.left);
 };
+const inRange = function (left, bottom, currentPosition) {
+    const leftCheck = left >= currentPosition.left - 40 && left <= currentPosition.left + 40;
+    const bottomCheck = bottom >= currentPosition.bottom - 50 && bottom <= currentPosition.bottom + 50;
+    if (leftCheck && bottomCheck) {
+        return true;
+    }
+};
 const makeShot = function () {
     let { left, bottom } = currentAlienPosition;
     bottom = 500;
@@ -103,13 +110,18 @@ const makeShot = function () {
     return { div, left, bottom };
 }
 const fireShot = function () {
-    let { div, bottom } = makeShot();
+    let { div, left, bottom } = makeShot();
     let shot = setInterval(() => {
         bottom = bottom - 70;
         div.style.bottom = bottom + 'px';
         if (bottom <= 0) {
             clearInterval(shot);
             document.body.removeChild(div);
+        }
+        if (inRange(left, bottom, currentPosition)) {
+            clearInterval(shot);
+            document.body.removeChild(div);
+            alert('boom!!!!!!!!');
         }
 
     }, 150);    // speed of bullet
@@ -121,9 +133,10 @@ const getRandomInterval = function () {
 }
 const fireContinousShot = function () {
     let interval = getRandomInterval();
-        setTimeout(() => {
-            fireShot();
-            fireContinousShot();
-        }, interval);
-  
+    setTimeout(() => {
+        fireShot();
+        fireContinousShot();
+    }, interval);
+
 };
+
