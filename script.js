@@ -64,7 +64,7 @@ const fireBullet = function () {
     setInterval(() => {
         bottom = bottom + 70;
         div.style.bottom = bottom + 'px';
-    }, 400);
+    }, 200);
 };
 //-------------------------------------------
 const moveAlienRight = function () {
@@ -112,7 +112,7 @@ const fireShot = function () {
             document.body.removeChild(div);
         }
 
-    }, 400);    // speed of bullet
+    }, 150);    // speed of bullet
 };
 const getRandomInterval = function () {
     let result = Math.ceil(Math.random() * 15) * 100
