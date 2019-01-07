@@ -57,13 +57,16 @@ const makeBullet = function () {
     div.className = 'bullet';
     document.body.appendChild(div);
 
-    return { div, bottom };
+    return { div, left, bottom };
 }
 const fireBullet = function () {
-    let { div, bottom } = makeBullet();
+    let { div, left, bottom } = makeBullet();
     setInterval(() => {
         bottom = bottom + 70;
         div.style.bottom = bottom + 'px';
+        if (inRangeAlienCraft(left, bottom, currentAlienPosition)) {
+            alert('hehe');
+        }
     }, 200);
 };
 //-------------------------------------------
@@ -91,13 +94,20 @@ const moveAlienLeft = function () {
 const moveAlien = function () {
     moveAlienLeft(currentAlienPosition.left);
 };
-const inRange = function (left, bottom, currentPosition) {
+const inRangeSpacecraft = function (left, bottom, currentPosition) {
     const leftCheck = left >= currentPosition.left - 80 && left <= currentPosition.left - 20;
     const bottomCheck = bottom >= currentPosition.bottom - 60 && bottom <= currentPosition.bottom + 30;
     if (leftCheck && bottomCheck) {
         return true;
     }
 };
+const inRangeAlienCraft = function (left, bottom, currentAlienPosition) {
+    const leftCheck = left >= currentAlienPosition.left - 50 && left <= currentAlienPosition.left + 60;
+    const bottomCheck = bottom >= currentAlienPosition.bottom - 50 && bottom <= currentAlienPosition.bottom + 50;
+    if (leftCheck && bottomCheck) {
+        return true;
+    }
+}
 const makeShot = function () {
     let { left, bottom } = currentAlienPosition;
     bottom = 500;
@@ -118,7 +128,7 @@ const fireShot = function () {
             clearInterval(shot);
             document.body.removeChild(div);
         }
-        if (inRange(left, bottom, currentPosition)) {
+        if (inRangeSpacecraft(left, bottom, currentPosition)) {
             clearInterval(shot);
             document.body.removeChild(div);
             alert('boom!!!!!!!!');
@@ -128,7 +138,6 @@ const fireShot = function () {
 };
 const getRandomInterval = function () {
     let result = Math.ceil(Math.random() * 15) * 100
-
     return result;
 }
 const fireContinousShot = function () {
