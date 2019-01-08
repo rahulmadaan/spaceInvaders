@@ -8,9 +8,10 @@
 .bullet{
     width: 10px;
     height: 40px;
-    border: 1px solid black;
     position: absolute; 
-    background-color: blueviolet;
+    background-image: url("https://bit.ly/2FfBND0");
+    background-size: cover;
+    background-position: center;
 }
 #alien{
     position: absolute; 

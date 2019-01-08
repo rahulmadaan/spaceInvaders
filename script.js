@@ -103,7 +103,7 @@ const inRangeSpacecraft = function (left, bottom, currentPosition) {
 };
 const inRangeAlienCraft = function (left, bottom, currentAlienPosition) {
     const leftCheck = left >= currentAlienPosition.left - 50 && left <= currentAlienPosition.left + 60;
-    const bottomCheck = bottom >= currentAlienPosition.bottom - 50 && bottom <= currentAlienPosition.bottom + 50;
+    const bottomCheck = bottom >= currentAlienPosition.bottom - 20 && bottom <= currentAlienPosition.bottom + 50;
     if (leftCheck && bottomCheck) {
         return true;
     }
@@ -131,7 +131,7 @@ const fireShot = function () {
         if (inRangeSpacecraft(left, bottom, currentPosition)) {
             clearInterval(shot);
             document.body.removeChild(div);
-            alert('boom!!!!!!!!');
+            // alert('boom!!!!!!!!');
         }
 
     }, 150);    // speed of bullet
