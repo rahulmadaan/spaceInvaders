@@ -9,10 +9,10 @@
 <link rel="stylesheet" type="text/css" href="style.css">
 
 <body id="body" onkeydown="
-    if(event.key == 'ArrowLeft') {moveLeft()}
-    if(event.key == 'ArrowRight') {moveRight()}
-    if(event.key == 'ArrowUp') {moveUp()}
-    if(event.key == 'ArrowDown') {moveBottom()}
+    if(event.key == 'ArrowLeft') {move('left')}
+    if(event.key == 'ArrowRight') {move('right')}
+    if(event.key == 'ArrowUp') {move('up')}
+    if(event.key == 'ArrowDown') {move('bottom')}
     if(event.key == ' ') {fireBullet()}
     "onload="moveAlien();fireContinousShot()">
     <div id="spaceship">
@@ -21,6 +21,8 @@
     </div>
     <div id="alien">
         <img style='left:750px' src="alien.png" alt="alien" />
+    </div>
+    <div class="gameOver">  
     </div>
 </body>
 

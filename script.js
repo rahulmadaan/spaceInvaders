@@ -8,34 +8,6 @@ const currentAlienPosition = {
 };
 const UNIT = "px";
 //----------------------------------------------------
-const moveRight = function () {
-    if (rightBounds(currentPosition.left)) {
-        currentPosition.left = currentPosition.left + 30;
-        document.getElementById('spaceship').style.left = currentPosition.left + UNIT;
-    }
-};
-
-
-const moveLeft = function () {
-    if (leftBounds(currentPosition.left)) {
-        currentPosition.left = currentPosition.left - 30;
-        document.getElementById('spaceship').style.left = currentPosition.left + UNIT;
-    }
-};
-
-const moveUp = function () {
-    if (upBounds(currentPosition.bottom)) {
-        currentPosition.bottom = currentPosition.bottom + 30;
-        document.getElementById('spaceship').style.bottom = currentPosition.bottom + UNIT;
-    }
-};
-
-const moveBottom = function () {
-    if (bottomBounds(currentPosition.bottom)) {
-        currentPosition.bottom = currentPosition.bottom - 30;
-        document.getElementById('spaceship').style.bottom = currentPosition.bottom + UNIT;
-    }
-};
 
 const leftBounds = function (currentPosition) {
     return 10 < currentPosition;
@@ -50,6 +22,44 @@ const bottomBounds = function (currentPosition) {
     return currentPosition > 0;
 };
 
+const bounds = {
+    "left": leftBounds,
+    "right": rightBounds,
+    "up": upBounds,
+    "bottom": bottomBounds
+};
+
+const directionToMove = {
+    "left": "left",
+    "right": "left",
+    "up": "bottom",
+    "bottom": "bottom"
+};
+const increment = function (variable, value) {
+    return variable + value;
+};
+
+const decrement = function (variable, value) {
+    return variable - value;
+};
+
+const incrementOrDecrement = function (direction, actualDirection, distanceToMove) {
+    if (direction == actualDirection) {
+        currentPosition[actualDirection] = decrement(currentPosition[actualDirection], distanceToMove)
+        return;
+    }
+    currentPosition[actualDirection] = increment(currentPosition[actualDirection], distanceToMove);
+    return;
+
+};
+
+const move = function (direction, distanceToMove = 30) {
+    let actualDirection = directionToMove[direction]
+    if (bounds[direction](currentPosition[actualDirection])) {
+        incrementOrDecrement(direction, actualDirection, distanceToMove);
+        document.getElementById('spaceship').style[actualDirection] = currentPosition[actualDirection] + UNIT;
+    }
+};
 
 //--------------------------------------------------
 const makeBullet = function () {
@@ -128,15 +138,19 @@ const fireShot = function () {
     let shot = setInterval(() => {
         bottom = bottom - 50;
         div.style.bottom = bottom + UNIT;
-        if (bottom <= 0) {
+        if (bottom <= 0 || inRangeSpacecraft(left, bottom, currentPosition)) {
             clearInterval(shot);
             document.body.removeChild(div);
         }
         if (inRangeSpacecraft(left, bottom, currentPosition)) {
-            clearInterval(shot);
-            document.body.removeChild(div);
-            alert('boom!!!!!!!!');
+            alert('hehe');
         }
+        // if (inRangeSpacecraft(left, bottom, currentPosition)) {
+        //     clearInterval(shot);
+        //     document.body.removeChild(div);
+        //     // alert('boom!!!!!!!!');
+        //     console.log('boom');
+        // }
 
     }, 100);    // speed of bullet
 };
