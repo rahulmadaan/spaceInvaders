@@ -1,3 +1,6 @@
+body{
+    background-image: url("https://vignette.wikia.nocookie.net/steamtradingcards/images/6/6e/Chicken_Invaders_4_Background_Space.jpg");
+}
 #spaceship{
     position: absolute; 
     left: 700; 
@@ -9,7 +12,7 @@
     width: 10px;
     height: 40px;
     position: absolute; 
-    background-image: url("https://bit.ly/2FfBND0");
+    background-image: url("http://pngimg.com/uploads/bullets/bullets_PNG1456.png");
     background-size: cover;
     background-position: center;
 }
@@ -22,10 +25,11 @@
 }
 .alienAttack{
     position: absolute; 
-    left: 780; 
-    bottom: 500; 
+    left: 780;  
+    bottom: 500;  
     width:10px; 
     height:40px;
-    border:2px solid black;
-    background-color: red;
+    background-image: url("https://i.ibb.co/x712yPb/Bullet-PNG-Transparent-Image-500x629.png");
+    background-size: cover;
+    background-position: center;
 }

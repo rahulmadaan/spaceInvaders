@@ -6,32 +6,34 @@ const currentAlienPosition = {
     left: 700,
     bottom: 610
 };
+const UNIT = "px";
 //----------------------------------------------------
 const moveRight = function () {
     if (rightBounds(currentPosition.left)) {
         currentPosition.left = currentPosition.left + 30;
-        document.getElementById('spaceship').style.left = currentPosition.left + 'px';
+        document.getElementById('spaceship').style.left = currentPosition.left + UNIT;
     }
 };
+
 
 const moveLeft = function () {
     if (leftBounds(currentPosition.left)) {
         currentPosition.left = currentPosition.left - 30;
-        document.getElementById('spaceship').style.left = currentPosition.left + 'px';
+        document.getElementById('spaceship').style.left = currentPosition.left + UNIT;
     }
 };
 
 const moveUp = function () {
     if (upBounds(currentPosition.bottom)) {
         currentPosition.bottom = currentPosition.bottom + 30;
-        document.getElementById('spaceship').style.bottom = currentPosition.bottom + 'px';
+        document.getElementById('spaceship').style.bottom = currentPosition.bottom + UNIT;
     }
 };
 
 const moveBottom = function () {
     if (bottomBounds(currentPosition.bottom)) {
         currentPosition.bottom = currentPosition.bottom - 30;
-        document.getElementById('spaceship').style.bottom = currentPosition.bottom + 'px';
+        document.getElementById('spaceship').style.bottom = currentPosition.bottom + UNIT;
     }
 };
 
@@ -47,12 +49,14 @@ const upBounds = function (currentPosition) {
 const bottomBounds = function (currentPosition) {
     return currentPosition > 0;
 };
+
+
 //--------------------------------------------------
 const makeBullet = function () {
     let { left, bottom } = currentPosition;
     bottom = bottom + 120;      // to place bullet at the tip of spaceship
     let div = document.createElement('div');
-    div.style.left = left + 40 + 'px';
+    div.style.left = left + 40 + UNIT;
     div.style.bottom = bottom;
     div.className = 'bullet';
     document.body.appendChild(div);
@@ -62,12 +66,12 @@ const makeBullet = function () {
 const fireBullet = function () {
     let { div, left, bottom } = makeBullet();
     setInterval(() => {
-        bottom = bottom + 70;
-        div.style.bottom = bottom + 'px';
+        bottom = bottom + 50;
+        div.style.bottom = bottom + UNIT;
         if (inRangeAlienCraft(left, bottom, currentAlienPosition)) {
             alert('hehe');
         }
-    }, 200);
+    }, 100);
 };
 //-------------------------------------------
 const moveAlienRight = function () {
@@ -96,14 +100,14 @@ const moveAlien = function () {
 };
 const inRangeSpacecraft = function (left, bottom, currentPosition) {
     const leftCheck = left >= currentPosition.left - 80 && left <= currentPosition.left - 20;
-    const bottomCheck = bottom >= currentPosition.bottom - 60 && bottom <= currentPosition.bottom + 30;
+    const bottomCheck = bottom >= currentPosition.bottom - 150 && bottom <= currentPosition.bottom + 30;
     if (leftCheck && bottomCheck) {
         return true;
     }
 };
 const inRangeAlienCraft = function (left, bottom, currentAlienPosition) {
-    const leftCheck = left >= currentAlienPosition.left - 50 && left <= currentAlienPosition.left + 60;
-    const bottomCheck = bottom >= currentAlienPosition.bottom - 20 && bottom <= currentAlienPosition.bottom + 50;
+    const leftCheck = left >= currentAlienPosition.left - 50 && left <= currentAlienPosition.left + 90;
+    const bottomCheck = bottom >= currentAlienPosition.bottom - 35 && bottom <= currentAlienPosition.bottom + 150;
     if (leftCheck && bottomCheck) {
         return true;
     }
@@ -112,7 +116,7 @@ const makeShot = function () {
     let { left, bottom } = currentAlienPosition;
     bottom = 500;
     let div = document.createElement('div');
-    div.style.left = left + 80 + 'px'; // to put shot at center of spaceship
+    div.style.left = left + 80 + UNIT; // to put shot at center of spaceship
     div.style.bottom = bottom;
     div.className = 'alienAttack';
     document.body.appendChild(div);
@@ -122,8 +126,8 @@ const makeShot = function () {
 const fireShot = function () {
     let { div, left, bottom } = makeShot();
     let shot = setInterval(() => {
-        bottom = bottom - 70;
-        div.style.bottom = bottom + 'px';
+        bottom = bottom - 50;
+        div.style.bottom = bottom + UNIT;
         if (bottom <= 0) {
             clearInterval(shot);
             document.body.removeChild(div);
@@ -131,10 +135,10 @@ const fireShot = function () {
         if (inRangeSpacecraft(left, bottom, currentPosition)) {
             clearInterval(shot);
             document.body.removeChild(div);
-            // alert('boom!!!!!!!!');
+            alert('boom!!!!!!!!');
         }
 
-    }, 150);    // speed of bullet
+    }, 100);    // speed of bullet
 };
 const getRandomInterval = function () {
     let result = Math.ceil(Math.random() * 15) * 100
